@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-function Login() {
+function Login({onLoginSuccess}) {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -22,6 +22,7 @@ function Login() {
 
       if (res.ok) {
         setMessage(data.message);
+        onLoginSuccess(name);
       } else {
         setMessage(data.message || 'Login failed');
       }
