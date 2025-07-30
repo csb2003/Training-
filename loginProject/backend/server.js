@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const mysql = require('mysql2')
+const upload = require('./middleware/upload');
 
 app.use(cors());
 app.use(express.json());
@@ -42,14 +43,61 @@ app.post('/login', (req, res) => {
 });
 
 
+app.get('/api/users',(req,res)=>{
+  const query = 'SELECT * FROM user_profiles'
 
-app.get('/', (req, res) => {
-  res.send("hello world!");
+  db.query(query,(error,results)=>{
+    if (error){
+      console.log("Error executing Query")
+      res.status(500).send('Error retrieving data')
+      return
+    }
+    res.json(results); // Send the data as JSON
+  })
+
+})
+
+
+app.post('/api/add_entities',upload.single('logo'), (req,res) =>{
+  const {
+    name, pan, gstn, mobile,logo, cgst, sgst, igst,
+    tdsRoi, addressLine1, addressLine2, addressLine3,
+    state, city, pincode
+  } = req.body;
+
+  const logoPath = req.file ? req.file.filename : null;
+
+  const sql = `INSERT INTO entities
+    (name, pan, gstn, mobile, logo, cgst_percentage, sgst_percentage, igst_percentage, tds_roi_percentage,
+     address_line_1, address_line_2, address_line_3, state, city, pincode)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  const values = [
+    name, pan, gstn, mobile, logoPath, cgst, sgst, igst, tdsRoi,
+    addressLine1, addressLine2, addressLine3, state, city, pincode
+  ];
+
+  db.query(sql, values, (err, result) => {
+    if (err) {
+      console.error('Error inserting entity:', err);
+      return res.status(500).json({ message: 'Error inserting entity' });
+    }
+    res.status(200).json({ message: 'Entity added successfully' });
+  });
 });
 
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello from backend!' });
-});
+app.get('/api/list_entities', (req,res) =>{
+  const query = 'SELECT * FROM entities'
+
+  db.query(query,(error,results)=>{
+    if (error){
+      console.log("Error executing Query")
+      res.status(500).send('Error retrieving data')
+      return
+    }
+    res.json(results); // Send the data as JSON
+  })
+})
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

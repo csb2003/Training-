@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Login from './login'
-import Dashboard from './dashboard';
-
+import MainDashboard from './mainDashboard';
+import { Routes } from 'react-router';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -26,7 +26,9 @@ function App() {
   return(
     <>
     {
-      isloggedIn? (<Dashboard name ={username} onLogout = {handlelogout}/>) : <Login onLoginSuccess = {handleLoginSucess}></Login> 
+      isloggedIn? 
+      (<MainDashboard name ={username} onLogout = {handlelogout}/>) : 
+      <Login onLoginSuccess = {handleLoginSucess}></Login> 
     } 
       
     </>
