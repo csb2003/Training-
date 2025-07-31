@@ -54,7 +54,31 @@ const Dashboard = () => {
       <div className="mb-6">
         <h1 className="text-2xl font-semibold text-gray-800 mb-2">DASHBOARD</h1>
         <p className="text-gray-600">Welcome to Dashboard</p>
+
+        
+        <div className="text-right">
+          {/* <span className="text-sm text-gray-600">Date Range:</span> */}
+          <div className="flex items-center space-x-2 mt-1">
+            <input
+              type="text"
+              placeholder="Enter Date Range"
+              className="px-3 py-1 border border-gray-300 rounded text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            <button className="p-1 border border-gray-300 rounded hover:bg-gray-50">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </button>
+            <button className="px-3 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50">
+              Reset
+            </button>
+          </div>
+        </div>
+
+
       </div>
+
+      
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
         <WelcomeCard />

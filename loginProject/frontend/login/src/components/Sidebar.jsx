@@ -45,8 +45,8 @@ const Sidebar = () => {
       type: 'dropdown',
       key: 'entities',
       subItems: [
-        { label: 'Add Entity', path: '/entities' },
-        { label: 'List Entity', path: '/list_entities' }
+        { label: 'Add Entity', path: '/entities/add_entities' },
+        { label: 'List Entity', path: 'entities/list_entity' }
       ]
     },
     { 
@@ -56,8 +56,8 @@ const Sidebar = () => {
       type: 'dropdown',
       key: 'invoice',
       subItems: [
-        { label: 'Add Invoice', path: '/invoice/add' },
-        { label: 'List Invoice', path: '/invoice/list' }
+        { label: 'Add Invoice', path: '/invoice/Add_Invoice' },
+        { label: 'List Invoice', path: '/invoice/List_Invoice' }
       ]
     },
     { 

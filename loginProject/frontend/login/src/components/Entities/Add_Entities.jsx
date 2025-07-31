@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ChevronDown, CheckCircle, X } from 'lucide-react'
 
-const Entities = () => {
+const Add_Entities = () => {
   const [formData, setFormData] = useState({
     name: '',
     pan: '',
@@ -183,7 +183,7 @@ const Entities = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none hover:border-black focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
                 disabled={isSubmitting}
               />
@@ -200,7 +200,7 @@ const Entities = () => {
                 required
                 value={formData.pan}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -215,7 +215,7 @@ const Entities = () => {
                 name="gstn"
                 value={formData.gstn}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -230,7 +230,7 @@ const Entities = () => {
                 name="mobile"
                 value={formData.mobile}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -246,10 +246,10 @@ const Entities = () => {
                   name="logo"
                   onChange={handleFileChange}
                   accept="image/*"
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  className="absolute inset-0 w-full hover:border-black h-full opacity-0 cursor-pointer"
                   disabled={isSubmitting}
                 />
-                <div className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 cursor-pointer">
+                <div className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg bg-white-20 text-gray-500 cursor-pointer">
                   {formData.logo ? formData.logo.name : 'Choose file | No file chosen'}
                 </div>
               </div>
@@ -266,7 +266,7 @@ const Entities = () => {
                 value={formData.cgst}
                 onChange={handleInputChange}
                 step="0.01"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -282,7 +282,7 @@ const Entities = () => {
                 value={formData.sgst}
                 onChange={handleInputChange}
                 step="0.01"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -298,7 +298,7 @@ const Entities = () => {
                 value={formData.igst}
                 onChange={handleInputChange}
                 step="0.01"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -313,7 +313,7 @@ const Entities = () => {
                   name="tdsRoi"
                   value={formData.tdsRoi}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+                  className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
                   disabled={isSubmitting}
                 >
                   <option value="">Choose...</option>
@@ -336,7 +336,7 @@ const Entities = () => {
                 name="addressLine1"
                 value={formData.addressLine1}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
                 disabled={isSubmitting}
               />
@@ -352,7 +352,7 @@ const Entities = () => {
                 name="addressLine2"
                 value={formData.addressLine2}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -367,7 +367,7 @@ const Entities = () => {
                 name="addressLine3"
                 value={formData.addressLine3}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
             </div>
@@ -382,7 +382,7 @@ const Entities = () => {
                 name="state"
                 value={formData.state}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
                 disabled={isSubmitting}
               />
@@ -398,7 +398,7 @@ const Entities = () => {
                 name="city"
                 value={formData.city}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
                 disabled={isSubmitting}
               />
@@ -414,7 +414,7 @@ const Entities = () => {
                 name="pincode"
                 value={formData.pincode}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
                 disabled={isSubmitting}
               />
@@ -442,4 +442,4 @@ const Entities = () => {
   )
 }
 
-export default Entities
+export default Add_Entities

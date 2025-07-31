@@ -5,26 +5,27 @@ import { User, Mail, Phone, CircleUserRound } from 'lucide-react';
 const columnHelper = createColumnHelper();
 
 const columns = [
-  columnHelper.accessor("name", {
+  columnHelper.accessor("name",{
     cell: (info) => info.getValue(),
     enableSorting: true,
     header: () => (
       <span className='flex items-center'>
-        <User className='mr-2' size={16} />Name
+        <User className='mr-2' size={16} /> Name
       </span>
     )
   }),
-  columnHelper.accessor("email", {
+
+  columnHelper.accessor("pan",{
     cell: (info) => info.getValue(),
+    enableSorting: true,
     header: () => (
       <span className='flex items-center'>
-        <Mail className='mr-2' size={16} /> Email
+        <User className='mr-2' size={16} /> PAN
       </span>
-    ),
-    enableSorting: true,
+    )
   }),
 
-  columnHelper.accessor("mobile", {
+  columnHelper.accessor("mobile",{
     cell: (info) => info.getValue(),
     enableSorting: true,
     header: () => (
@@ -33,74 +34,100 @@ const columns = [
       </span>
     )
   }),
-  columnHelper.accessor("role", {
-    cell: (info) => info.getValue(),
-    enableSorting: true,
-    header: () => (
-      <span className='flex items-center'>
-        <CircleUserRound className='mr-2' size={16} /> Role
-      </span>
-    )
-  }),
-  columnHelper.accessor("entity", {
-    cell: (info) => info.getValue(),
-    enableSorting: true,
-    header: () => (
-      <span className='flex items-center'>
-        <User className='mr-2' size={16} /> Entity
-      </span>
-    )
-  }),
-];
 
-function Users() {
-  const [users, setUsers] = useState([]);
+  columnHelper.accessor("address_line_1",{
+    cell: (info) => info.getValue(),
+    enableSorting: true,
+    header: () => (
+      <span className='flex items-center'>
+        <User className='mr-2' size={16} /> Address
+      </span>
+    )
+  }),
+
+  columnHelper.accessor("state",{
+    cell: (info) => info.getValue(),
+    enableSorting: true,
+    header: () => (
+      <span className='flex items-center'>
+        <User className='mr-2' size={16} /> State
+      </span>
+    )
+  }),
+
+  columnHelper.accessor("city",{
+    cell: (info) => info.getValue(),
+    enableSorting: true,
+    header: () => (
+      <span className='flex items-center'>
+        <User className='mr-2' size={16} /> City
+      </span>
+    )
+  }),
+
+  columnHelper.accessor("pincode",{
+    cell: (info) => info.getValue(),
+    enableSorting: true,
+    header: () => (
+      <span className='flex items-center'>
+        <User className='mr-2' size={16} /> Pincode
+      </span>
+    )
+  }),
+  
+  
+]
+
+
+function List_entity() {
+
+  const [entities, setEntities] = useState([])
   const [globalFilter, setGlobalFilter] = useState('');
-  const [sorting, setSorting] = useState([]);
-
-  const getUsers = async () => {
+  
+  const getEntities = async() => {
     try {
-      const res = await fetch('http://localhost:5000/api/users');
-      const data = await res.json();
-      setUsers(data);
-    } catch (error) {
-      console.error('Failed to fetch users:', error);
-    }
-  };
+      const res = await fetch('http://localhost:5000/api/list_entities')
+      const data = await res.json()
+      setEntities(data)
+      console.log("Entities data:", data);
 
-  useEffect(() => {
-    getUsers();
-  }, []);
+    } catch (error) {
+      console.log("failed to fetch data: ",error)
+    }
+  }
+
+  useEffect(()=>{
+    getEntities();
+  },[])
 
   const table = useReactTable({
-    data: users,
+    data: entities,
     columns: columns,
     state: {
-    globalFilter,
+      globalFilter,
     },
     onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-  });
-  useEffect(() => {
-    table.setPageSize(10);
-  }, []);
+  })
 
   return (
-    <div className="p-6 text-gray-700 bg-white">
-      <h1 className="text-2xl font-semibold mb-4">User Table</h1>
+    <div className = 'p-6 text-gray-700 bg-white'>
+      
+      <h1 className='text-2xl font-semibold mb-4'>List Entity</h1>
 
-      <input
+      <input 
         type="text"
-        placeholder="Search users..."
-        value={globalFilter ?? ''}
+        placeholder='Search entity...'
+        value = {globalFilter ?? ''}
         onChange={(e) => setGlobalFilter(e.target.value)}
-        className="mb-4 p-2 border border-gray-300 rounded w-full max-w-sm hover:border-black"
-      />
+        className='mb-4 p-2 border border-gray-300 rounded w-full max-w-sm hover:border-black'
+        />
 
       <table className="min-w-full divide-y divide-gray-200 border border-gray-300 rounded-md shadow-sm overflow-hidden text-sm">
+
         <thead className="bg-gray-100 text-left text-sm font-semibold text-gray-600">
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
@@ -124,6 +151,7 @@ function Users() {
             </tr>
           ))}
         </thead>
+
         <tbody className="divide-y divide-gray-100 bg-white text-sm">
           {table.getRowModel().rows.map(row => (
             <tr key={row.id} className="hover:bg-gray-50 even:bg-gray-50">
@@ -135,6 +163,7 @@ function Users() {
             </tr>
           ))}
         </tbody>
+
       </table>
 
       <div className="flex items-center justify-between mt-4 text-sm">
@@ -164,13 +193,8 @@ function Users() {
         </div>
       </div>
 
-      <br></br>
-      <footer className= "bg-grey">
-        @2025 Cashinvoice
-      </footer>
     </div>
-
-  );
+  )
 }
 
-export default Users;
+export default List_entity

@@ -14,8 +14,8 @@ const WelcomeCard = () => {
           </div>
           
           <div>
-            <p className="text-gray-600 text-sm">Ajay Ja...</p>
-            <p className="text-gray-600 text-sm">Super Ad...</p>
+            <p className="text-gray-600 text-sm">Chinmay Badve</p>
+            <p className="text-gray-600 text-sm">Super Admin</p>
           </div>
           
           <div className="ml-auto text-right">
