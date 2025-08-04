@@ -22,56 +22,54 @@ const Sidebar = () => {
   }
 
   const menuItems = [
-    { 
-      icon: Home, 
-      label: 'Dashboard', 
-      path: '/', 
-      type: 'single' 
-    },
-    { 
-      icon: Users, 
-      label: 'User', 
-      path: '/users', 
-      type: 'dropdown',
-      key: 'user',
-      subItems: [
-        { label: 'List Users', path: '/users' },
-      ]
-    },
-    { 
-      icon: FileText, 
-      label: 'Entities', 
-      path: '/entities', 
-      type: 'dropdown',
-      key: 'entities',
-      subItems: [
-        { label: 'Add Entity', path: '/entities/add_entities' },
-        { label: 'List Entity', path: 'entities/list_entity' }
-      ]
-    },
-    { 
-      icon: CreditCard, 
-      label: 'Invoice', 
-      path: '/invoice', 
-      type: 'dropdown',
-      key: 'invoice',
-      subItems: [
-        { label: 'Add Invoice', path: '/invoice/Add_Invoice' },
-        { label: 'List Invoice', path: '/invoice/List_Invoice' }
-      ]
-    },
-    { 
-      icon: Shield, 
-      label: 'Permissions', 
-      path: '/permissions', 
-      type: 'dropdown',
-      key: 'permissions',
-      subItems: [
-        // { label: 'All Permissions', path: '/permissions' },
-        // { label: 'Role Management', path: '/permissions/roles' }
-      ]
-    }
-  ]
+  { 
+    icon: Home, 
+    label: 'Dashboard', 
+    path: '/dashboard', 
+    type: 'single' 
+  },
+  { 
+    icon: Users, 
+    label: 'User', 
+    path: '/dashboard/users', 
+    type: 'dropdown',
+    key: 'user',
+    subItems: [
+      { label: 'List Users', path: '/dashboard/users' },
+    ]
+  },
+  { 
+    icon: FileText, 
+    label: 'Entities', 
+    path: '/dashboard/entities', 
+    type: 'dropdown',
+    key: 'entities',
+    subItems: [
+      { label: 'Add Entity', path: '/dashboard/entities/add_entities' },
+      { label: 'List Entity', path: '/dashboard/entities/list_entity' }
+    ]
+  },
+  { 
+    icon: CreditCard, 
+    label: 'Invoice', 
+    path: '/dashboard/invoice', 
+    type: 'dropdown',
+    key: 'invoice',
+    subItems: [
+      { label: 'Add Invoice', path: '/dashboard/invoice/Add_Invoice' },
+      { label: 'List Invoice', path: '/dashboard/invoice/List_Invoice' }
+    ]
+  },
+  { 
+    icon: Shield, 
+    label: 'Permissions', 
+    path: '/dashboard/permissions', 
+    type: 'dropdown',
+    key: 'permissions',
+    subItems: []
+  }
+]
+
 
   const isActiveItem = (item) => {
     if (item.type === 'single') {

@@ -1,47 +1,62 @@
-// backend/index.js
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const mysql = require('mysql2')
 const upload = require('./middleware/upload');
-
+const validateandHashUser = require('./middleware/validateandHashUser');
+const db = require('./db');
 app.use(cors());
 app.use(express.json());
-
-
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'chinmaysb246@#$',
-  database: 'cashinvoice'
-});
-
-db.connect(err => {
-  if (err) {
-    console.error('❌ DB connection failed:', err);
-  } else {
-    console.log('✅ Connected to MySQL database');
-  }
-});
+const bcrypt = require('bcrypt');
 
 app.post('/login', (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
 
-  const sql = 'SELECT * FROM users WHERE name = ? AND email = ? AND password = ?';
-  db.query(sql, [name, email, password], (err, results) => {
+  // 1. Check if email and password are provided
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password required' });
+  }
+
+  // 2. Query the DB for the user
+  const sql = 'SELECT * FROM users WHERE email = ?';
+  db.query(sql, [email], async (err, results) => {
+    if (err) {
+      console.error('DB error:', err);
+      return res.status(500).json({ message: 'Server error' });
+    }
+
+    // 3. Check if user exists
+    if (results.length === 0) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    const user = results[0];
+
+    // 4. Compare passwords
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid email or password' });
+    }
+
+    // 5. Success
+    return res.status(200).json({ message: 'Login successful!', name: user.name });
+  });
+});
+
+
+app.post('/register',validateandHashUser, (req,res)=>{
+  const {name, email, password } = req.body;
+  const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)'
+
+  db.query(sql,[name, email, password], (err,results) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ message: 'Server error' });
     }
-
-    if (results.length > 0) {
-      res.json({ message: 'Login successful!' });
-    } else {
-      res.status(401).json({ message: 'Invalid credentials' });
-    }
-  });
-});
-
+    res.status(200).json({ message: 'User registered successfully!' });
+  })
+})
 
 app.get('/api/users',(req,res)=>{
   const query = 'SELECT * FROM user_profiles'

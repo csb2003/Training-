@@ -4,20 +4,13 @@ import { ChevronDown, CheckCircle, X } from 'lucide-react'
 const Add_Invoice = () => {
   const [formData, setFormData] = useState({
     name: '',
-    pan: '',
-    gstn: '',
-    mobile: '',
+    invoice_no: '',
+    invoice_date: '',
+    due_date: '',
     logo: null,
-    cgst: '',
-    sgst: '',
-    igst: '',
-    tdsRoi: '',
-    addressLine1: '',
-    addressLine2: '',
-    addressLine3: '',
-    state: '',
-    city: '',
-    pincode: ''
+    invoice_amount: '',
+    gst_amount: '',
+    net_amount: ''
   })
 
   const [showSuccessPopup, setShowSuccessPopup] = useState(false)
@@ -64,7 +57,7 @@ const Add_Invoice = () => {
             form.append(key,formData[key])
         }
 
-        const res = await fetch('http://localhost:5000/api/add_entities',{
+        const res = await fetch('http://localhost:5000/api/add_invoice',{
             method: 'POST',
             body: form
         })
@@ -154,7 +147,7 @@ const Add_Invoice = () => {
 
       <div className="mb-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold text-gray-800">ADD ENTITIES</h1>
+          <h1 className="text-2xl font-semibold text-gray-800">ADD INVOICE</h1>
           <div className="text-m text-gray-500">
             <span>Entities</span>
             <span className="mx-2">/</span>
@@ -166,7 +159,7 @@ const Add_Invoice = () => {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Name */}
+            {/* Entity Name */}
             <div>
               <label className="block text-m font-medium text-gray-700 mb-2">
                 Entity Name <span className="text-red-500">*</span>
@@ -182,16 +175,16 @@ const Add_Invoice = () => {
               />
             </div>
 
-            {/* PAN */}
+            {/* Invoice No. */}
             <div>
               <label className="block text-m font-medium text-gray-700 mb-2">
                 Invoice No. <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                name="pan"
+                name="invoice_no"
                 required
-                value={formData.pan}
+                value={formData.invoice_no}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
@@ -205,8 +198,8 @@ const Add_Invoice = () => {
               </label>
               <input
                 type="date"
-                name="gstn"
-                value={formData.gstn}
+                name="invoice_date"
+                value={formData.invoice_date}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
@@ -220,8 +213,8 @@ const Add_Invoice = () => {
               </label>
               <input
                 type="date"
-                name="mobile"
-                value={formData.mobile}
+                name="due_date"
+                value={formData.due_date}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
@@ -236,10 +229,11 @@ const Add_Invoice = () => {
               <div className="relative">
                 <input
                 type="number"
-                name="cgst"
-                value={formData.cgst}
+                name="invoice_amount"
+                value={formData.invoice_amount}
                 onChange={handleInputChange}
-                step="0.01"
+                step="1"
+                min="0"
                 className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
@@ -254,10 +248,11 @@ const Add_Invoice = () => {
               </label>
               <input
                 type="number"
-                name="cgst"
-                value={formData.cgst}
+                name="gst_amount"
+                value={formData.gst_amount}
                 onChange={handleInputChange}
-                step="0.01"
+                step="1"
+                min="0"
                 className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
@@ -270,10 +265,11 @@ const Add_Invoice = () => {
               </label>
               <input
                 type="number"
-                name="sgst"
-                value={formData.sgst}
+                name="net_amount"
+                value={formData.net_amount}
                 onChange={handleInputChange}
-                step="0.01"
+                step="1"
+                min="0"
                 className="w-full px-3 py-2 border hover:border-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 disabled={isSubmitting}
               />
